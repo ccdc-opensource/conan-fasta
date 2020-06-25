@@ -17,16 +17,17 @@ class FastaConan(ConanFile):
     exports_sources = '*'
     
     def build_requirements(self):
-        if self.settings.os == 'Windows':
+        if self.settings.os_build == 'Windows':
             self.build_requires('7zip/19.00')
 
     def source(self):
         if self.settings.os_build == "Windows":
             archive_name='fasta-36.3.8e.7z'
             # Building on windows requires intel C compiler... I'll just grab a build
-            tools.get(
+            tools.download(
                 url=f'https://artifactory.ccdc.cam.ac.uk:443/artifactory/ccdc-3rdparty-windows-runtime-exes/{archive_name}',
-                sha256=' 116e4ba09caf8ca1d3044dfec111655550e27ae70ddd1b8a75a7dd27df8ebb02',
+                filename=archive_name,
+                sha256='116e4ba09caf8ca1d3044dfec111655550e27ae70ddd1b8a75a7dd27df8ebb02',
                 headers={
                 'X-JFrog-Art-Api': os.environ.get("ARTIFACTORY_API_KEY", None)
             })
