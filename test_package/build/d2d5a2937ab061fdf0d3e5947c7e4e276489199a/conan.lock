@@ -1,0 +1,21 @@
+{
+ "profile_host": "[settings]\narch=x86_64\narch_build=x86_64\nbuild_type=Release\ncompiler=gcc\ncompiler.libcxx=libstdc++11\ncompiler.version=9\nos=Linux\nos.distro=CentOS\nos_build=Linux\nlibtool:build_type=Release\n[options]\nbzip2:shared=True\ncairo:enable_fc=True\ncairo:enable_ft=True\ncairo:enable_glib=False\ncairo:enable_xcb=False\ncairo:enable_xlib=False\ncairo:enable_xlib_xrender=False\ncairo:shared=True\nccdcsqlite3:enable_explain_comments=True\nccdcsqlite3:enable_fts3=True\nccdcsqlite3:enable_fts4=True\nccdcsqlite3:enable_fts5=True\nccdcsqlite3:enable_json1=True\nccdcsqlite3:enable_null_trim=True\nccdcsqlite3:max_column=10000\nccdcsqlite3:shared=True\nexpat:shared=True\nfontconfig:shared=False\nfreetype:shared=False\ngtest:shared=True\njasper:shared=True\njbig:shared=True\nlexactivator:shared=True\nlibcurl:shared=True\nlibiconv:shared=False\nlibjpeg:shared=True\nlibpng:shared=False\nlibtiff:shared=True\nlibuuid:shared=True\nlibwebp:shared=True\nlibxl:shared=True\nlibxml2:shared=True\nopenscenegraph:shared=True\nopenssl:shared=True\nprotobuf:shared=True\nprotobuf:with_zlib=True\nxz_utils:shared=True\nzlib:shared=True\nzstd:shared=True\n[build_requires]\n[env]\nCC=/opt/rh/devtoolset-9/root/usr/bin/gcc\nCXX=/opt/rh/devtoolset-9/root/usr/bin/g++",
+ "graph_lock": {
+  "nodes": {
+   "0": {
+    "pref": "None/None:ceab52f05d361fe1b6dc8e820b101aea24db5792",
+    "options": "",
+    "requires": [
+     "1"
+    ],
+    "path": "/c/conan-fasta/test_package/conanfile.py"
+   },
+   "1": {
+    "pref": "fasta/36.3.8f#974669f0d0f106ed64627d1cfedee92d:44fcf6b9a7fb86b2586303e3db40189d3b511830#60de4b3e0b10ebf70cf80b0d3fc13b00",
+    "options": "",
+    "modified": "built"
+   }
+  }
+ },
+ "version": "0.3"
+}

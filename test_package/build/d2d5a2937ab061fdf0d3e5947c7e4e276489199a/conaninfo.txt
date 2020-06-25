@@ -1,0 +1,24 @@
+[settings]
+
+
+[requires]
+    fasta/36.Y.Z
+
+[options]
+
+
+[full_settings]
+
+
+[full_requires]
+    fasta/36.3.8f:44fcf6b9a7fb86b2586303e3db40189d3b511830
+
+[full_options]
+
+
+[recipe_hash]
+
+
+[env]
+    CC=/opt/rh/devtoolset-9/root/usr/bin/gcc
+    CXX=/opt/rh/devtoolset-9/root/usr/bin/g++

@@ -1,0 +1,7 @@
+sources:
+  "36.3.8h_04-May-2020":
+    url: https://github.com/wrpearson/fasta36/archive/v36.3.8h_04-May-2020.zip
+    sha256: "1d8440de56b57c01324d8c3e0c34ec5b32d3a43fd0b5d5c6c8b2c67562804e67"
+  "36.3.8f":
+    url: https://github.com/wrpearson/fasta36/archive/fasta-v36.3.8f.zip
+    sha256: "7f6bc79890387a7a9caa167d4d4cfa32aa32735220c52deaa2228ef37112c9d5"
