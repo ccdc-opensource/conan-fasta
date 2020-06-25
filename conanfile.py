@@ -15,16 +15,28 @@ class FastaConan(ConanFile):
     _source_subfolder = 'sources'
     generators = "make"
     exports_sources = '*'
+    
+    def build_requirements(self):
+        if self.settings.os == 'Windows':
+            self.build_requires('7zip/19.00')
 
     def source(self):
-        tools.get(**self.conan_data["sources"][self.version])
-        extracted_dir = "fasta36-fasta-v" + self.version
-        os.rename(extracted_dir, self._source_subfolder)
-
-    def _build_msvc(self):
-        with tools.vcvars(self.settings):
-            with tools.chdir(os.path.join(self._source_subfolder, "src")):
-                self.run("nmake /f ../make/Makefile.nm_pcom all")
+        if self.settings.os_build == "Windows":
+            archive_name='fasta-36.3.8e.7z'
+            # Building on windows requires intel C compiler... I'll just grab a build
+            tools.get(
+                url=f'https://artifactory.ccdc.cam.ac.uk:443/artifactory/ccdc-3rdparty-windows-runtime-exes/{archive_name}',
+                sha256=' 116e4ba09caf8ca1d3044dfec111655550e27ae70ddd1b8a75a7dd27df8ebb02',
+                headers={
+                'X-JFrog-Art-Api': os.environ.get("ARTIFACTORY_API_KEY", None)
+            })
+            self.run('7z x %s' % archive_name)
+            os.unlink(archive_name)
+            os.rename('fasta-36.3.8e', self._source_subfolder)
+        else:
+            tools.get(**self.conan_data["sources"][self.version])
+            extracted_dir = "fasta36-fasta-v" + self.version
+            os.rename(extracted_dir, self._source_subfolder)
 
     def _build_macos(self):
         env_build = AutoToolsBuildEnvironment(self)
@@ -40,7 +52,7 @@ class FastaConan(ConanFile):
 
     def build(self):
         if self.settings.os_build == "Windows":
-            self._build_msvc()
+            pass # just grab the build
         elif self.settings.os_build == "Macos":
             self._build_macos()
         elif self.settings.os_build == "Linux":
@@ -55,7 +67,7 @@ class FastaConan(ConanFile):
         self.copy("*", src="sources/scripts", dst="scripts")
         self.copy("*", src="sources/seq", dst="seq")
         self.copy("LICENSE", src="sources", dst="licenses")
-        self.copy("COPYRIGHT", src="sources", dst="licenses")
+        self.copy("COPYRIGHT", src="sources/", dst="licenses")
 
     def package_id(self):
         del self.info.settings.compiler
