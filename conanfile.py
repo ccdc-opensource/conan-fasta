@@ -77,3 +77,7 @@ class FastaConan(ConanFile):
         bin_path = os.path.join(self.package_folder, "bin")
         self.output.info('Appending PATH environment variable: %s' % bin_path)
         self.env_info.path.append(bin_path)
+        major_version = self.version.split('.')[0]
+        extension = '.exe' if self.settings.os_build == 'Windows' else ''
+        self.env_info.FASTA_ALIGNMENT_TOOL = os.path.join(bin_path, f'ggsearch{major_version}{extension}')
+        self.env_info.FASTA_SEQUENCE_SEARCH_TOOL = os.path.join(bin_path, f'fasta{major_version}{extension}')
